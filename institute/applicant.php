@@ -66,7 +66,7 @@ $update_stmt->close();
             </a>
             <ul class="items-stretch hidden space-x-3 mr-5 md:flex">
                 <li class="flex">
-                    <a rel="noopener noreferrer" href="../homepage2.html"
+                    <a rel="noopener noreferrer" href="../index.php"
                         class="flex items-center px-4 -mb-1 border-b-2 border-transparent hover:border-blue-500 transition duration-300 ease-in-out font-semibold">Home</a>
                 </li>
                 <li class="flex">
