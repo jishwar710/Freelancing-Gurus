@@ -1,0 +1,55 @@
+@startuml FreelancingGurus Context DFD
+
+!define PROCESS rectangle
+!define EXTERNAL_ENTITY rectangle
+!define DATA_STORE database
+
+' Custom styling
+skinparam rectangle {
+  roundCorner 25
+  BackgroundColor #EEEEEE
+  FontColor black
+  FontSize 14
+}
+
+skinparam database {
+  BackgroundColor #F0F0F0
+}
+
+skinparam arrow {
+  Color black
+  FontColor black
+  FontSize 12
+}
+
+' Central process (the system)
+rectangle "FreelancingGurus\nSystem" as system #LightBlue
+
+' External entities
+EXTERNAL_ENTITY "Freelancer\n(Free User)" as freelancer #PaleGreen
+EXTERNAL_ENTITY "Institute" as institute #PaleGreen
+EXTERNAL_ENTITY "Administrator" as admin #PaleGreen
+
+' Data flows
+freelancer -right-> system : "Register/Login"
+freelancer -right-> system : "Submit Applications"
+freelancer -right-> system : "Report Jobs"
+freelancer -right-> system : "Submit Feedback"
+system -right-> freelancer : "Application Status"
+system -right-> freelancer : "Job Listings"
+system -right-> freelancer : "Notifications"
+
+institute -up-> system : "Register/Login"
+institute -up-> system : "Post Jobs"
+institute -up-> system : "Review Applications"
+system -up-> institute : "Application Submissions"
+system -up-> institute : "Manage Profile"
+
+admin -left-> system : "Login"
+admin -left-> system : "Moderate Content"
+admin -left-> system : "Handle Reports"
+system -left-> admin : "System Statistics"
+system -left-> admin : "Activity Reports"
+system -left-> admin : "Feedback Reports"
+
+@enduml 

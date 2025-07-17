@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>About Us</title>
+</head>
+
+<body class="bg-cyan-50">
+
+    <header class="w-full">
+        <div class="mx-auto flex justify-between h-16 bg-white w-full max-w-full">
+            <a rel="noopener noreferrer" href="#" aria-label="Back to homepage" class="flex items-center p-2">
+                <h1 class="font-serif text-3xl text-sky-700">FreelancingGurus</h1>
+            </a>
+            <ul class="items-stretch hidden space-x-3 mr-5 md:flex">
+                <li class="flex">
+                    <a rel="noopener noreferrer" href="./homepage2.html"
+                        class="flex items-center px-4 -mb-1 border-b-2 border-transparent hover:text-indigo-600 border-blue-500 transition duration-300 ease-in-out font-semibold">Home</a>
+                </li>
+                            <!-- Login Dropdown -->
+            <li class="flex relative group">
+                <button class="flex items-center px-4 -mb-1 border-b-2 border-transparent hover:border-blue-500 transition duration-300 ease-in-out font-semibold">
+                    Login <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div class="absolute hidden group-hover:block top-full right-0 w-48 bg-white shadow-lg rounded-md py-2 z-10">
+                    <a href="./freelancer/FreelancerLogin.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Freelancer Login</a>
+                    <a href="./institute/InstituteLogin.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Institute Login</a>
+                    <a href="./admin/AdminLogin.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Login</a>
+                </div>
+            </li>
+            <!-- Register Dropdown -->
+            <li class="flex relative group">
+                <button class="flex items-center px-4 -mb-1 border-b-2 border-transparent hover:border-blue-500 transition duration-300 ease-in-out font-semibold">
+                    Register <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div class="absolute hidden group-hover:block top-full right-0 w-48 bg-white shadow-lg rounded-md py-2 z-10">
+                    <a href="./freelancer/freelance_regi.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Freelancer Registration</a>
+                    <a href="./institute/InstituteRegi.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Institute Registration</a>
+                </div>
+            </li>
+            <li class="flex">
+                <a rel="noopener noreferrer" href="./aboutus.html"
+                    class="flex items-center px-4 -mb-1 border-b-2 border-transparent hover:border-blue-500 transition duration-300 ease-in-out font-semibold">About
+                    Us</a>
+            </li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="bg-sky-900 text-white">
+        <div class="container mx-auto px-6 py-12 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2">
+                <h1 class="text-4xl font-bold">About Us</h1>
+                <p class="mt-4 text-xl">We are committed to providing a seamless platform for freelancers and
+                    educational institutes. Our goal is to bridge the gap between talented individuals and institutions
+                    in need of specialized skills. By fostering a collaborative environment, we aim to enhance
+                    educational opportunities and drive innovation in the learning space.</p>
+            </div>
+            <div class="md:w-1/2 mt-6 ml-80 md:mt-5">
+                <img src="./images/9813.jpg" alt="About Us Image" class="rounded-lg shadow-lg">
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-cyan-50 mx-auto px-6 py-12">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold">Meet Our Team</h2>
+            <p class="text-gray-900 font-bold mt-4">Our team is dedicated to delivering the best experience for our
+                users. Learn more about the people who make it all happen.</p>
+        </div>
+
+        <div class="flex text-center flex-wrap justify-center space-x-4">
+            <div class="w-full md:w-1/4 p-6">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center justify-center ml-20 h-20 w-20 text-white rounded-full">
+                        <img src="./images/121.avif" alt="Team Member 1" class="w-20 h-20 rounded-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold mt-4">John Doe</h3>
+                    <p class="text-gray-600 mt-2 ">CEO & Founder</p>
+                </div>
+            </div>
+            <div class="w-full text-center md:w-1/4 p-6">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center justify-center ml-20 h-20 w-20 text-white rounded-full">
+                        <img src="./images/122.avif" alt="Team Member 2" class="w-20 h-20 rounded-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold mt-4 ">Jane Smith</h3>
+                    <p class="text-gray-600 mt-2">Chief Technology Officer</p>
+                </div>
+            </div>
+            <div class="w-full text-center md:w-1/4 p-6">
+                <div class="bg-white  p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center justify-center ml-20 h-20 w-20 text-white rounded-full">
+                        <img src="./images/123.avif" alt="Team Member 3" class="w-20 h-20 rounded-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold mt-4">Emily Johnson</h3>
+                    <p class="text-gray-600 mt-2">Marketing Manager</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

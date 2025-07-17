@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FG Project Vertical Site Structure</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 1600px;
+            margin: 0 auto;
+            overflow: auto;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        #tree-container {
+            width: 100%;
+            height: 1000px;
+            overflow: auto;
+        }
+        .node circle {
+            fill: #fff;
+            stroke: steelblue;
+            stroke-width: 3px;
+        }
+        .node text {
+            font: 14px sans-serif;
+        }
+        .link {
+            fill: none;
+            stroke: #ccc;
+            stroke-width: 2px;
+        }
+        .home circle {
+            fill: #f9d5e5;
+            stroke: #333;
+        }
+        .section circle {
+            fill: #eeeeee;
+            stroke: #333;
+        }
+        .page circle {
+            fill: #e3f2fd;
+            stroke: #333;
+        }
+        .controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FG Project Vertical Site Structure</h1>
+        
+        <div class="controls">
+            <button id="downloadSVG">Download as SVG</button>
+            <button id="downloadPNG">Download as PNG (High Quality)</button>
+            <button id="zoomIn">Zoom In</button>
+            <button id="zoomOut">Zoom Out</button>
+            <button id="resetZoom">Reset View</button>
+        </div>
+        
+        <div id="tree-container"></div>
+    </div>
+
+    <script>
+        // Define the tree data
+        const treeData = {
+            name: "Homepage",
+            class: "home",
+            children: [
+                {
+                    name: "About Us",
+                    class: "page"
+                },
+                {
+                    name: "Feedback Form",
+                    class: "page"
+                },
+                {
+                    name: "Freelancer Section",
+                    class: "section",
+                    children: [
+                        {
+                            name: "Registration",
+                            class: "page"
+                        },
+                        {
+                            name: "Login",
+                            class: "page",
+                            children: [
+                                {
+                                    name: "Account Management",
+                                    class: "page",
+                                    children: [
+                                        {
+                                            name: "Profile",
+                                            class: "page"
+                                        },
+                                        {
+                                            name: "Update Profile",
+                                            class: "page"
+                                        },
+                                        {
+                                            name: "My Applications",
+                                            class: "page"
+                                        },
+                                        {
+                                            name: "Job Responses",
+                                            class: "page"
+                                        },
+                                        {
+                                            name: "Delete Account",
+                                            class: "page"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "Institute Section",
+                    class: "section",
+                    children: [
+                        {
+                            name: "Registration",
+                            class: "page"
+                        },
+                        {
+                            name: "Login",
+                            class: "page",
+                            children: [
+                                {
+                                    name: "Account Management",
+                                    class: "page",
+                                    children: [
+                                        {
+                                            name: "Profile",
+                                            class: "page"
+                                        },
+                                        {
+                                            name: "Update Profile",
+                                            class: "page"
+                                        },
+                                        {
+                                            name: "Post Job Ad",
+                                            class: "page"
+                                        },
+                                        {
+                                            name: "Job Listings",
+                                            class: "page"
+                                        },
+                                        {
+                                            name: "View Applicants",
+                                            class: "page"
+                                        },
+                                        {
+                                            name: "Send Response",
+                                            class: "page"
+                                        },
+                                        {
+                                            name: "My Responses",
+                                            class: "page"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "Job Section",
+                    class: "section",
+                    children: [
+                        {
+                            name: "Job Listings",
+                            class: "page"
+                        },
+                        {
+                            name: "Apply for Job",
+                            class: "page"
+                        },
+                        {
+                            name: "Submit Report",
+                            class: "page"
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // Set up the D3 tree layout
+        const margin = {top: 50, right: 50, bottom: 50, left: 50};
+        const width = 1500 - margin.right - margin.left;
+        const height = 900 - margin.top - margin.bottom;
+
+        let zoom = d3.zoom()
+            .scaleExtent([0.3, 3])
+            .on("zoom", (event) => {
+                svg.attr("transform", event.transform);
+            });
+
+        const svg = d3.select("#tree-container").append("svg")
+            .attr("width", width + margin.right + margin.left)
+            .attr("height", height + margin.top + margin.bottom)
+            .call(zoom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        // Create a vertical tree layout
+        const tree = d3.tree().size([width, height]);
+        const root = d3.hierarchy(treeData);
+        tree(root);
+
+        // Add links
+        const link = svg.selectAll(".link")
+            .data(root.links())
+            .enter().append("path")
+            .attr("class", "link")
+            .attr("d", d3.linkVertical()
+                .x(d => d.x)
+                .y(d => d.y));
+
+        // Add nodes
+        const node = svg.selectAll(".node")
+            .data(root.descendants())
+            .enter().append("g")
+            .attr("class", d => "node " + (d.data.class || ""))
+            .attr("transform", d => "translate(" + d.x + "," + d.y + ")");
+
+        // Add circles to nodes
+        node.append("circle")
+            .attr("r", 10);
+
+        // Add text to nodes
+        node.append("text")
+            .attr("dy", "0.35em")
+            .attr("y", d => d.children ? -20 : 20)
+            .style("text-anchor", "middle")
+            .text(d => d.data.name);
+
+        // Zoom controls
+        document.getElementById("zoomIn").addEventListener("click", () => {
+            d3.select("#tree-container svg").transition().call(zoom.scaleBy, 1.2);
+        });
+
+        document.getElementById("zoomOut").addEventListener("click", () => {
+            d3.select("#tree-container svg").transition().call(zoom.scaleBy, 0.8);
+        });
+
+        document.getElementById("resetZoom").addEventListener("click", () => {
+            d3.select("#tree-container svg").transition().call(
+                zoom.transform,
+                d3.zoomIdentity.translate(margin.left, margin.top)
+            );
+        });
+
+        // Download functions
+        document.getElementById("downloadSVG").addEventListener("click", () => {
+            // Get the SVG element
+            const svgEl = document.querySelector("#tree-container svg");
+            
+            // Clone the SVG
+            const clonedSvg = svgEl.cloneNode(true);
+            
+            // Set the width and height including the margins
+            clonedSvg.setAttribute("width", width + margin.right + margin.left);
+            clonedSvg.setAttribute("height", height + margin.top + margin.bottom);
+            
+            // Add CSS styles inline
+            const styleElement = document.createElement("style");
+            styleElement.textContent = `
+                .node circle {
+                    fill: #fff;
+                    stroke: steelblue;
+                    stroke-width: 3px;
+                }
+                .node text {
+                    font: 14px sans-serif;
+                }
+                .link {
+                    fill: none;
+                    stroke: #ccc;
+                    stroke-width: 2px;
+                }
+                .home circle {
+                    fill: #f9d5e5;
+                    stroke: #333;
+                }
+                .section circle {
+                    fill: #eeeeee;
+                    stroke: #333;
+                }
+                .page circle {
+                    fill: #e3f2fd;
+                    stroke: #333;
+                }
+            `;
+            clonedSvg.appendChild(styleElement);
+            
+            // Convert to a data URL
+            const svgData = new XMLSerializer().serializeToString(clonedSvg);
+            const svgBlob = new Blob([svgData], {type: "image/svg+xml;charset=utf-8"});
+            const svgUrl = URL.createObjectURL(svgBlob);
+            
+            // Create a download link
+            const downloadLink = document.createElement("a");
+            downloadLink.href = svgUrl;
+            downloadLink.download = "fg_project_vertical_structure.svg";
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        });
+
+        document.getElementById("downloadPNG").addEventListener("click", () => {
+            // Get the SVG element
+            const svgEl = document.querySelector("#tree-container svg");
+            
+            // Clone the SVG
+            const clonedSvg = svgEl.cloneNode(true);
+            
+            // Set the width and height including the margins
+            clonedSvg.setAttribute("width", width + margin.right + margin.left);
+            clonedSvg.setAttribute("height", height + margin.top + margin.bottom);
+            
+            // Add CSS styles inline
+            const styleElement = document.createElement("style");
+            styleElement.textContent = `
+                .node circle {
+                    fill: #fff;
+                    stroke: steelblue;
+                    stroke-width: 3px;
+                }
+                .node text {
+                    font: 14px sans-serif;
+                }
+                .link {
+                    fill: none;
+                    stroke: #ccc;
+                    stroke-width: 2px;
+                }
+                .home circle {
+                    fill: #f9d5e5;
+                    stroke: #333;
+                }
+                .section circle {
+                    fill: #eeeeee;
+                    stroke: #333;
+                }
+                .page circle {
+                    fill: #e3f2fd;
+                    stroke: #333;
+                }
+            `;
+            clonedSvg.appendChild(styleElement);
+            
+            // Convert to a data URL
+            const svgData = new XMLSerializer().serializeToString(clonedSvg);
+            const svgBlob = new Blob([svgData], {type: "image/svg+xml;charset=utf-8"});
+            const svgUrl = URL.createObjectURL(svgBlob);
+            
+            // Create an Image object
+            const img = new Image();
+            img.onload = function() {
+                // Create a canvas with 3x resolution for high quality
+                const scale = 3; // Scale factor for higher resolution
+                const canvas = document.createElement("canvas");
+                canvas.width = (width + margin.right + margin.left) * scale;
+                canvas.height = (height + margin.top + margin.bottom) * scale;
+                const ctx = canvas.getContext("2d");
+                ctx.scale(scale, scale);
+                ctx.fillStyle = "white";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0);
+                
+                // Convert to PNG and download
+                const pngUrl = canvas.toDataURL("image/png");
+                const downloadLink = document.createElement("a");
+                downloadLink.href = pngUrl;
+                downloadLink.download = "fg_project_vertical_structure_hq.png";
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            };
+            img.src = svgUrl;
+        });
+    </script>
+</body>
+</html>

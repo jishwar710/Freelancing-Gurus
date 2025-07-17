@@ -1,0 +1,26 @@
+2025-03-16 17:11:42 - Delete account accessed
+2025-03-16 17:11:42 - User ID: 29
+2025-03-16 17:11:42 - Database connected
+2025-03-16 17:11:42 - ERROR: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`freelance`.`institute_responses`, CONSTRAINT `institute_responses_ibfk_1` FOREIGN KEY (`application_id`) REFERENCES `applications` (`application_id`))
+2025-03-16 17:15:11 - Delete account accessed
+2025-03-16 17:15:11 - User ID: 29
+2025-03-16 17:15:11 - Database connected
+2025-03-16 17:15:11 - Found 5 applications
+2025-03-16 17:15:11 - Deleted 2 responses
+2025-03-16 17:15:11 - Deleted 5 applications
+2025-03-16 17:15:11 - Deleted 1 reports
+2025-03-16 17:15:11 - Anonymized 2 feedback entries
+2025-03-16 17:15:11 - Deleted user account: Yes
+2025-03-16 17:15:11 - Transaction committed
+2025-03-16 17:15:11 - Redirecting to login page with success message
+2025-03-16 17:20:32 - Delete account accessed
+2025-03-16 17:20:32 - User ID: 41
+2025-03-16 17:20:32 - Database connected
+2025-03-16 17:20:32 - Found 1 applications
+2025-03-16 17:20:32 - Deleted 0 responses
+2025-03-16 17:20:32 - Deleted 1 applications
+2025-03-16 17:20:32 - Deleted 0 reports
+2025-03-16 17:20:32 - Anonymized 0 feedback entries
+2025-03-16 17:20:32 - Deleted user account: Yes
+2025-03-16 17:20:32 - Transaction committed
+2025-03-16 17:20:32 - Redirecting to login page with success message

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Heroicons CDN (for the search icon) -->
+  <script src="https://unpkg.com/heroicons@1.0.6/outline.js"></script>
+  <script>
+    function handleNavigation(selectElement) {
+      const value = selectElement.value; // Get the selected URL
+      const text = selectElement.options[selectElement.selectedIndex].text; // Get the selected text
+
+      if (value) {
+        // Redirect to the selected page
+        window.location.href = value;
+
+        // Update the dropdown label dynamically
+        selectElement.options[0].text = text; // Change the placeholder text to the selected option
+        selectElement.selectedIndex = 0; // Reset the dropdown to the first option
+      }
+    }
+  </script>
+</head>
+<body class="bg-cyan-50">
+
+  <!-- Navbar -->
+  <div class="bg-white shadow-md p-4 flex justify-between items-center border-b border-gray-200">
+    <!-- Logo Section -->
+    <div class="flex items-center space-x-4">
+      <img src="https://via.placeholder.com/50" alt="Logo" class="h-10 w-10">
+      <h2 class="text-2xl font-semibold text-gray-800">Dashboard</h2>
+    </div>
+    
+    <!-- Dropdowns, Search Bar and Icon Section -->
+    <div class="flex items-center space-x-6">
+      <!-- Search Bar and Icon -->
+      <div class="flex items-center border border-gray-300 rounded-md p-2">
+        <input type="text" placeholder="Search..." class="px-4 py-2 rounded-l-md focus:outline-none text-sm">
+        <!-- Search Icon -->
+        <button class="bg-blue-500 text-white p-2 rounded-r-md hover:bg-blue-400 focus:outline-none">
+          <!-- Heroicon Search Magnifying Glass -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 3a7 7 0 100 14 7 7 0 000-14zM10 13a3 3 0 110-6 3 3 0 010 6z" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Details Dropdown -->
+      <select class="border border-gray-300 rounded-md p-2" onchange="handleNavigation(this)">
+        <option value="./admin_dboard.php">Home</option>
+        <option value="./admin_institute_details.php">Institute</option>
+        <option value="./admin_freelancer_details.php">Freelancer</option>
+        <option value="./admin_job_details.php">Job</option>
+        <option value="./feedback_details.php">Feedback</option>
+      </select>
+      
+      <!-- Reports Dropdown -->
+      <a href="./admin_institute_report.php">Reports</a>
+
+      
+      <!-- Profile Dropdown -->
+      <select class="border border-gray-300 rounded-md p-2" onchange="handleNavigation(this)">
+        <option value="">Hi, Admin</option>
+        <option value="./admin_institute_report.php">Change Password</option>
+        <option value="../freelancer/freelancer_logout.php">Logout</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto p-6 mt-12 bg-white shadow-md rounded-lg">
+    <!-- Admin Table -->
+    <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Sr.No</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">User id</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Username</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Report Description</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Institute id</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Institute Name</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="">
+          <td class="px-6 py-3 text-sm text-gray-700">1</td>
+          <td class="px-6 py-3 text-sm text-gray-700">John Doe</td>
+          <td class="px-6 py-3 text-sm text-gray-700">johndoe@example.com</td>
+          <td class="px-6 py-3 text-sm text-gray-700">Admin</td>
+          <td class="px-6 py-3 text-sm text-gray-700">Institute A</td>
+          <td class="px-6 py-3 text-sm text-gray-700">
+            80000
+          </td>
+          <td class="px-6 py-3 text-sm text-gray-700">
+            <input type="text" class="border-4 ">
+            <button class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500 ml-2">Send</button>
+          </td>
+        </tr>
+        <!-- More rows can be added similarly -->
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>
