@@ -1,48 +1,32 @@
-# XAMPP specific
-.htaccess
-php.ini
-
 # PHP specific
-vendor/
+/vendor/
 composer.phar
 *.log
-.env
 
-# IDE specific
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE specific files
 .idea/
 .vscode/
-*.sublime-project
-*.sublime-workspace
-
-# OS specific
-.DS_Store
-Thumbs.db
-
-# Temporary files
 *.swp
 *.swo
-*~
-*.tmp
 
-# Database dumps
-*.sql
-*.sqlite
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-# Cache and logs
-/cache/
-/logs/
-*.cache
+# XAMPP specific
+.phpunit.result.cache
+/phpunit.xml
 
-# User uploaded content
-/upload/
-/uploads/
-/media/
-
-# Configuration files containing sensitive information
-config.php
-database.php
-*config*.php
-
-# Composer
-composer.phar
-/vendor/
+# Backup files
+*.bak
+*.backup
